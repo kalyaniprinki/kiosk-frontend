@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./UserUpload.css";
+// import "./UserUpload.css";
 
 export default function Upload() {
   const [file, setFile] = useState(null);
