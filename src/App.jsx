@@ -13,7 +13,7 @@ import Reports from "./pages/admin/Reports";
 import UserLogin from "./pages/user/UserLogin";
 import UserRegister from "./pages/user/UserRegister";
 import UserDashboard from "./pages/user/UserDashboard";
-import Upload from "./pages/user/Upload";
+import UploadFile from "./pages/user/UploadFile";
 
 // Kiosk
 import KioskLogin from "./pages/kiosk/KioskLogin";
@@ -38,7 +38,7 @@ export default function App() {
         <Route path="/user/login" element={<UserLogin />} />
         <Route path="/user/register" element={<UserRegister />} />
         <Route path="/user/dashboard" element={<UserDashboard />} />
-        <Route path="/user/upload" element={<Upload />} />
+        <Route path="/user/uploadfile" element={<UploadFile />} />
 
         {/* Kiosk */}
         <Route path="/kiosk/login" element={<KioskLogin />} />

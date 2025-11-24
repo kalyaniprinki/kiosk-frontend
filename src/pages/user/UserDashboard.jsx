@@ -54,7 +54,7 @@ export default function UserDashboard() {
 
       {/* ACTION BUTTONS */}
       <div className="action-grid">
-        <a className="action-card" href="/user/upload">
+        <a className="action-card" href="/user/uploadfile">
           <div className="icon-circle">⬆</div>
           <p>Upload File</p>
         </a>
