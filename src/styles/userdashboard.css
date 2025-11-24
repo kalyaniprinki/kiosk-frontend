@@ -3,165 +3,217 @@
   max-width: 900px;
   margin: auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 
 /* HEADER */
 .dash-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  padding: 25px;
+  border-radius: 15px;
+  color: white;
+  margin-bottom: 20px;
 }
 
-.status-box {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.header-title {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.status-card {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 14px;
+  border-radius: 10px;
+  display: inline-block;
+  font-size: 14px;
 }
 
 .status-dot {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
   border-radius: 50%;
+  display: inline-block;
 }
 
 .status-dot.online {
-  background: #00c851;
+  background: #00ff55;
 }
 
 .status-dot.offline {
-  background: #ff4444;
+  background: #ff3e3e;
 }
 
-/* WALLET + CONNECT */
-.top-actions {
-  margin-top: 20px;
+/* TOP SECTION */
+.top-section {
   display: flex;
   gap: 15px;
+  margin: 20px 0;
   flex-wrap: wrap;
 }
 
-.wallet-card {
+/* WALLET BOX */
+.wallet-box {
   flex: 1;
-  background: #f6f6f6;
+  background: white;
   padding: 15px;
   border-radius: 12px;
-  border: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.wallet-card .label {
-  font-size: 13px;
-  color: #666;
+.wallet-label {
+  font-size: 14px;
+  color: #555;
 }
 
-.connect-btn {
-  padding: 15px 20px;
-  background: #007bff;
+.wallet-amount {
+  font-size: 24px;
+  margin-top: 3px;
+}
+
+.wallet-add-btn {
+  background: #16a34a;
   color: white;
   border: none;
-  border-radius: 12px;
-  font-size: 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
-.connect-btn:active {
-  transform: scale(0.97);
+/* CONNECT BUTTON */
+.connect-btn {
+  flex: 1;
+  padding: 15px;
+  border-radius: 12px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* ACTION BUTTON GRID */
+.connect-btn.connected {
+  background: #10b981;
+}
+
+/* ACTION GRID */
 .action-grid {
-  margin-top: 25px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
+  margin: 25px 0;
 }
 
 .action-card {
-  text-decoration: none;
   background: white;
-  padding: 20px 0;
+  padding: 25px 10px;
+  border-radius: 12px;
   text-align: center;
-  border-radius: 15px;
-  border: 1px solid #ddd;
-  transition: transform 0.2s;
-}
-
-.action-card:hover {
-  transform: translateY(-3px);
+  text-decoration: none;
+  color: black;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  font-size: 15px;
 }
 
 .icon-circle {
-  width: 45px;
-  height: 45px;
-  background: #eee;
-  border-radius: 50%;
+  background: #eef2ff;
+  width: 55px;
+  height: 55px;
   margin: auto;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-}
-
-.section-title {
-  margin-top: 30px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 8px;
 }
 
 /* FILE LIST */
-.file-list {
-  margin-top: 15px;
+.section-title {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
 }
 
-.file-row {
+.file-list {
+  margin-top: 10px;
+}
+
+.file-item {
+  background: white;
+  padding: 14px;
+  border-radius: 12px;
   display: flex;
   justify-content: space-between;
-  padding: 12px 15px;
-  background: #fafafa;
-  border-radius: 12px;
-  border: 1px solid #ddd;
   margin-bottom: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
 .file-name {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .file-size {
-  font-size: 12px;
-  color: #777;
+  font-size: 13px;
+  color: gray;
 }
 
 .print-btn {
-  background: #28a745;
-  border: none;
+  background: #4f46e5;
   color: white;
-  padding: 8px 14px;
-  border-radius: 8px;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
-.print-btn:active {
-  transform: scale(0.95);
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* RESPONSIVE DESIGN */
-@media (max-width: 600px) {
-  .dash-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
+.modal-box {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 350px;
+  text-align: center;
+}
 
-  .action-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.modal-input {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
 
-  .top-actions {
-    flex-direction: column;
-  }
+.modal-btn {
+  background: #16a34a;
+  padding: 12px 14px;
+  color: white;
+  border-radius: 10px;
+  width: 100%;
+  border: none;
+  margin-bottom: 10px;
+}
 
-  .connect-btn {
-    width: 100%;
-  }
+.modal-close {
+  background: #dc2626;
+  padding: 10px 14px;
+  color: white;
+  border-radius: 10px;
+  width: 100%;
+  border: none;
 }
