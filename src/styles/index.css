@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  /* margin-top: 100px; */
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(135deg, #dff1ff, #f3f8ff);
+}
+
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f0f4ff;
+}
+
+.welcome-box {
+  text-align: center;
+  background: white;
+  padding: 35px;
+  width: 420px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #003f8c;
+}
+
+.subtitle {
+  margin-top: -5px;
+  color: #777;
+  font-size: 14px;
+}
+
+.hero-image {
+  width: 160px;
+  margin: 20px auto;
+  display: block;
+}
+
+.section-label {
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.buttons .btn {
+  display: block;
+  text-decoration: none;
+  margin: 6px 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  transition: 0.25s;
+}
+
+.btn.user { background: #4a90e2; }
+.btn.admin { background: #e67e22; }
+.btn.kiosk { background: #2ecc71; }
+
+.btn:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+/* Dropdown for Register As */
+.dropdown {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.dropdown:hover {
+  border-color: #4a90e2;
+}
+
+@keyframes fadeIn {
+  from { opacity:0; transform: translateY(20px); }
+  to { opacity:1; transform: translateY(0); }
+}

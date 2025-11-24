@@ -1,0 +1,108 @@
+.admin-container {
+  max-width: 850px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial;
+}
+
+/* TITLE */
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* TABS */
+.admin-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 1;
+  padding: 12px;
+  background: #f0f0f0;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: #007bff;
+  color: white;
+}
+
+/* STATS */
+.stats-container {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.stat-card {
+  background: #fafafa;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 8px;
+  color: #007bff;
+}
+
+/* LIST SECTIONS */
+.list-container {
+  margin-top: 10px;
+}
+
+.list-row {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.email {
+  font-size: 14px;
+  color: #777;
+}
+
+.delete-btn {
+  background: #ff4444;
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* KIOSK STATUS */
+.status {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.status.online {
+  background: #00c851;
+  color: white;
+}
+
+.status.offline {
+  background: #ff4444;
+  color: white;
+}
