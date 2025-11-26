@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // export const API_URL = "http://localhost:5000/api";
-export const API_URL = "https://kiosk-frontend-amber.vercel.app";
+export const API_URL = "https://kiosk-frontend-amber.vercel.app/api";
 
 const api = axios.create({
   baseURL: API_URL,
