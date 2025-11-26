@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/form.css";
-import api from "../../api/api";
+import api from "../../api/api"; // axios instance with deployed backend URL
 
 export default function UserLogin() {
   const [form, setForm] = useState({
@@ -8,32 +8,43 @@ export default function UserLogin() {
     password: "",
   });
 
+  const [error, setError] = useState("");
+
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
   async function handleLogin(e) {
     e.preventDefault();
+    setError("");
 
     try {
+      // POST request to deployed backend: /user/login
       const res = await api.post("/user/login", {
         email: form.email,
-        password: form.password,
+        password: form.password
       });
 
-      console.log("Login Response:", res.data);
+      const data = res.data;
+      console.log("Login Response:", data);
 
-      // Save the token if backend returns JWT
-      if (res.data.token) {
-        localStorage.setItem("token", res.data.token);
+      // Save token if backend provides it
+      if (data.token) {
+        localStorage.setItem("token", data.token);
       }
 
       // Redirect to dashboard
       window.location.href = "/user/dashboard";
 
-    } catch (error) {
-      console.error("Login error:", error);
-      alert("Invalid email or password");
+    } catch (err) {
+      console.error("Login error:", err);
+
+      // Backend error message
+      if (err.response && err.response.data?.message) {
+        setError(err.response.data.message);
+      } else {
+        setError("Login failed. Please try again.");
+      }
     }
   }
 
@@ -43,6 +54,8 @@ export default function UserLogin() {
 
         <h1 className="form-title">User Login</h1>
         <p className="form-subtitle">Access your printing account</p>
+
+        {error && <p className="error-box">{error}</p>}
 
         <form onSubmit={handleLogin}>
           <input

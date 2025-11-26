@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/form.css";
+import api from "../../api/api"; // axios instance
 
 export default function AdminLogin() {
   const [form, setForm] = useState({
@@ -20,19 +21,10 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/admin/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      // ✅ Axios returns parsed JSON automatically
+      const { data } = await api.post("/admin/login", form);
 
-      const data = await res.json();
-
-      if (!data.success) {
-        setError(data.message || "Invalid login credentials");
-        setLoading(false);
-        return;
-      }
+     
 
       // Save token in localStorage
       localStorage.setItem("admin_token", data.token);

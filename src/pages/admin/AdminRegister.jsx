@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/form.css";
+import api from "../../api/api"; // axios instance
 
 export default function AdminRegister() {
   const [form, setForm] = useState({
@@ -23,13 +24,9 @@ export default function AdminRegister() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/admin/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      const res = await api.post("/admin/register", form);
+      const data = res.data;
 
-      const data = await res.json();
 
       if (!data.success) {
         setError(data.message || "Registration failed");
