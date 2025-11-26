@@ -8,14 +8,44 @@ export default function KioskRegister() {
     password: "",
   });
 
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  function handleRegister(e) {
+  async function handleRegister(e) {
     e.preventDefault();
-    console.log("Kiosk registering:", form);
-    window.location.href = "/kiosk/login";
+    setError("");
+    setSuccess("");
+
+    try {
+      const res = await fetch("http://localhost:5000/api/kiosk/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.message || "Registration failed");
+        return;
+      }
+
+      setSuccess(`Kiosk registered! Your Kiosk ID: ${data.kioskId}`);
+
+      setTimeout(() => {
+        window.location.href = "/kiosk/login";
+      }, 1500);
+
+    } catch (err) {
+      console.error(err);
+      setError("Server error. Please try again.");
+    }
   }
 
   return (
@@ -24,6 +54,9 @@ export default function KioskRegister() {
 
         <h1 className="form-title">Register Kiosk</h1>
         <p className="form-subtitle">Create kiosk terminal account</p>
+
+        {error && <p className="error-box">{error}</p>}
+        {success && <p className="success-box">{success}</p>}
 
         <form onSubmit={handleRegister}>
           <input

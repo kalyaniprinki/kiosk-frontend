@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/userupload.css";
+import api from "../../api/api";
 
 export default function UploadFile() {
   const [file, setFile] = useState(null);
@@ -29,26 +30,35 @@ export default function UploadFile() {
     if (selected) setFile(selected);
   }
 
-  function uploadFile() {
+  async function uploadFile() {
     if (!file) return alert("Select a file first!");
 
-    setUploading(true);
-    setProgress(0);
+    const formData = new FormData();
+    formData.append("file", file);
 
-    // Fake upload progress
-    let interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            alert("Upload complete!");
-            setUploading(false);
-          }, 300);
-          return 100;
+    try {
+      setUploading(true);
+
+      const res = await api.post("/user/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+
+        onUploadProgress: (p) => {
+          const percent = Math.round((p.loaded * 100) / p.total);
+          setProgress(percent);
         }
-        return prev + 10;
       });
-    }, 200);
+
+      alert("File uploaded successfully!");
+
+      setFile(null);
+      setProgress(0);
+      setUploading(false);
+
+    } catch (err) {
+      console.error("Upload error:", err);
+      alert("Upload failed");
+      setUploading(false);
+    }
   }
 
   return (
@@ -57,7 +67,6 @@ export default function UploadFile() {
       <h2 className="page-title">Upload New File</h2>
       <p className="page-subtitle">Accepted: PDF, Images, Docs</p>
 
-      {/* Drag and Drop area */}
       <div
         className={`drop-box ${dragActive ? "active" : ""}`}
         onDragOver={handleDragOver}
@@ -88,7 +97,6 @@ export default function UploadFile() {
         )}
       </div>
 
-      {/* Upload button */}
       <button
         className="upload-btn"
         onClick={uploadFile}
@@ -97,7 +105,6 @@ export default function UploadFile() {
         {uploading ? "Uploading..." : "Upload File"}
       </button>
 
-      {/* Progress Bar */}
       {uploading && (
         <div className="progress-bar">
           <div className="progress-fill" style={{ width: `${progress}%` }} />

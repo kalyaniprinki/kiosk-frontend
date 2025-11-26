@@ -106,3 +106,12 @@
   background: #ff4444;
   color: white;
 }
+.error-msg {
+  color: #ff4d4d;
+  background: #ffe5e5;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 14px;
+}

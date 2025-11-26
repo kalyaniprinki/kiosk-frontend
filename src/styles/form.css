@@ -86,3 +86,22 @@
 .link:hover {
   text-decoration: underline;
 }
+.error-msg {
+  color: #ff4d4d;
+  background: #ffe5e5;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.success-msg {
+  color: #1a8f3a;
+  background: #d9ffe6;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 14px;
+}

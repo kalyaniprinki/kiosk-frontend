@@ -14,6 +14,7 @@ import UserLogin from "./pages/user/UserLogin";
 import UserRegister from "./pages/user/UserRegister";
 import UserDashboard from "./pages/user/UserDashboard";
 import UploadFile from "./pages/user/UploadFile";
+import UserFiles from "./pages/user/UserFiles";
 
 // Kiosk
 import KioskLogin from "./pages/kiosk/KioskLogin";
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/user/register" element={<UserRegister />} />
         <Route path="/user/dashboard" element={<UserDashboard />} />
         <Route path="/user/uploadfile" element={<UploadFile />} />
+        <Route path="/user/files" element={<UserFiles />} />
 
         {/* Kiosk */}
         <Route path="/kiosk/login" element={<KioskLogin />} />

@@ -7,14 +7,45 @@ export default function AdminLogin() {
     password: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
-    console.log("Admin logging in:", form);
-    window.location.href = "/admin/dashboard";
+    setError("");
+    setLoading(true);
+
+    try {
+      const res = await fetch("http://localhost:5000/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!data.success) {
+        setError(data.message || "Invalid login credentials");
+        setLoading(false);
+        return;
+      }
+
+      // Save token in localStorage
+      localStorage.setItem("admin_token", data.token);
+
+      // Redirect to admin dashboard
+      window.location.href = "/admin/dashboard";
+
+    } catch (err) {
+      console.error("Login Error:", err);
+      setError("Something went wrong. Try again.");
+    }
+
+    setLoading(false);
   }
 
   return (
@@ -23,6 +54,8 @@ export default function AdminLogin() {
 
         <h1 className="form-title">Admin Login</h1>
         <p className="form-subtitle">Administrator access only</p>
+
+        {error && <p className="error-msg">{error}</p>}
 
         <form onSubmit={handleLogin}>
           <input
@@ -43,8 +76,8 @@ export default function AdminLogin() {
             required
           />
 
-          <button className="btn-primary" type="submit">
-            Login
+          <button className="btn-primary" type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 

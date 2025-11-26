@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/form.css";
+import api from "../../api/api";
 
 export default function UserRegister() {
   const [form, setForm] = useState({
@@ -12,10 +13,31 @@ export default function UserRegister() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  function handleRegister(e) {
+  async function handleRegister(e) {
     e.preventDefault();
-    console.log("User registering:", form);
-    window.location.href = "/user/login";
+
+    try {
+      const res = await api.post("/user/register", {
+        name: form.name,
+        email: form.email,
+        password: form.password,
+      });
+
+      console.log("Register Response:", res.data);
+
+      alert("Account created successfully!");
+
+      // Optional: Save token immediately if backend returns one
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token);
+      }
+
+      window.location.href = "/user/login";
+
+    } catch (error) {
+      console.error("Register Error:", error);
+      alert("Something went wrong. Try again.");
+    }
   }
 
   return (

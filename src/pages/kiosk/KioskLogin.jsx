@@ -7,14 +7,43 @@ export default function KioskLogin() {
     password: "",
   });
 
+  const [error, setError] = useState("");
+
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
-    console.log("Kiosk logging in:", form);
-    window.location.href = "/kiosk/dashboard";
+    setError("");
+
+    try {
+      const res = await fetch("http://localhost:5000/api/kiosk/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.message || "Login failed");
+        return;
+      }
+
+      // Save token
+      localStorage.setItem("KIOSK_TOKEN", data.token);
+      localStorage.setItem("KIOSK_ID", form.kioskId);
+
+      // Redirect
+      window.location.href = "/kiosk/dashboard";
+
+    } catch (err) {
+      console.error(err);
+      setError("Server error. Please try again.");
+    }
   }
 
   return (
@@ -23,6 +52,8 @@ export default function KioskLogin() {
 
         <h1 className="form-title">Kiosk Login</h1>
         <p className="form-subtitle">Login to access kiosk panel</p>
+
+        {error && <p className="error-box">{error}</p>}
 
         <form onSubmit={handleLogin}>
           <input

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/form.css";
+import api from "../../api/api";
 
 export default function UserLogin() {
   const [form, setForm] = useState({
@@ -11,14 +12,29 @@ export default function UserLogin() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
 
-    // Later you will replace this with API request
-    console.log("User logging in:", form);
+    try {
+      const res = await api.post("/user/login", {
+        email: form.email,
+        password: form.password,
+      });
 
-    // Temporary redirect
-    window.location.href = "/user/dashboard";
+      console.log("Login Response:", res.data);
+
+      // Save the token if backend returns JWT
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token);
+      }
+
+      // Redirect to dashboard
+      window.location.href = "/user/dashboard";
+
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Invalid email or password");
+    }
   }
 
   return (
