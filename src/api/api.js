@@ -1,18 +1,8 @@
 // src/api/api.js
 import axios from "axios";
 
-// Use environment variable for API base URL
-// Create .env.development and .env.production in your frontend folder
-// Example:
-//   .env.development -> REACT_APP_API_URL=http://localhost:5000/api
-//   .env.production  -> REACT_APP_API_URL=https://kiosk-backend.vercel.app/api
-const API_URL = process.env.REACT_APP_API_URL;
-
-if (!API_URL) {
-  console.error(
-    "REACT_APP_API_URL is not defined! Please set it in your .env file."
-  );
-}
+// Use deployed backend URL directly
+const API_URL = "https://project-yjqr.onrender.com/api";
 
 const api = axios.create({
   baseURL: API_URL,
