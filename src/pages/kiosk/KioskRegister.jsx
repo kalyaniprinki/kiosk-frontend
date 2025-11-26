@@ -24,7 +24,7 @@ export default function KioskRegister() {
     try {
       // ✅ Use api instance (points to deployed backend)
       const res = await api.post("/kiosk/register", form);
-
+      const data=res.data;
 
       if (!res.ok) {
         setError(data.message || "Registration failed");
