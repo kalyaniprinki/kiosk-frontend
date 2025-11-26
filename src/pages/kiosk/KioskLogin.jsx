@@ -23,7 +23,6 @@ export default function KioskLogin() {
       const res = await api.post("/kiosk/login", form);
 
 
-      const data = await res.json();
 
       if (!res.ok) {
         setError(data.message || "Login failed");
