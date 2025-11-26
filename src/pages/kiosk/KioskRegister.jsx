@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/form.css";
+import api from "../../api/api"; // use the axios instance
 
 export default function KioskRegister() {
   const [form, setForm] = useState({
@@ -21,13 +22,9 @@ export default function KioskRegister() {
     setSuccess("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/kiosk/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
+      // ✅ Use api instance (points to deployed backend)
+      const res = await api.post("/kiosk/register", form);
+
 
       const data = await res.json();
 
