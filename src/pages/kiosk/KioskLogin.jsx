@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/form.css";
-import api from "../../api/api"; // use the axios instance
+import api from "../../api/api"; // axios instance
 
 export default function KioskLogin() {
   const [form, setForm] = useState({
@@ -19,16 +19,8 @@ export default function KioskLogin() {
     setError("");
 
     try {
-      // ✅ Use api instance (points to deployed backend)
-      const res = await api.post("/kiosk/login", form);
-
-
-      const data = res.data;
-
-      if (!res.ok) {
-        setError(data.message || "Login failed");
-        return;
-      }
+      // ✅ Axios returns parsed JSON automatically
+      const { data } = await api.post("/kiosk/login", form);
 
       // Save token
       localStorage.setItem("KIOSK_TOKEN", data.token);
@@ -39,7 +31,11 @@ export default function KioskLogin() {
 
     } catch (err) {
       console.error(err);
-      setError("Server error. Please try again.");
+
+      // Axios-style error message
+      setError(
+        err.response?.data?.message || "Server error. Please try again."
+      );
     }
   }
 
