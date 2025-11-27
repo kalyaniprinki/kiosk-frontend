@@ -74,7 +74,7 @@ export default function KioskDashboard() {
 ///-------------------for printer
     async function checkPrinterStatus() {
       try {
-        const res = await fetch("http://localhost:9000/status");
+        const res = await fetch("http://localhost:9100/status");
         const data = await res.json();
         setPrinterStatus(data);
       } catch (err) {
