@@ -158,7 +158,7 @@ async function handleStartPrint(fileId) {
   // NEW — Send file to local printer
 async function sendToLocalPrinter(filePath) {
   try {
-    const res = await fetch("http://localhost:9000/print", {
+    const res = await fetch("http://localhost:9100/print", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ filePath }),
