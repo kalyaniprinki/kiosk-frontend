@@ -120,15 +120,24 @@ const handlePrint = async (fileId) => {
 
     // STEP 1 — get file from backend
     const res = await api.get(`/file/${fileId}`);
-    const filePath = res.data.localFilePath;
+    // const filePath = res.data.localFilePath;
 
-    if (!filePath) {
-      alert("File not found on server");
-      return;
-    }
+    // if (!filePath) {
+    //   alert("File not found on server");
+    //   return;
+    // }
 
-    // STEP 2 — print locally
-    const printResult = await sendToLocalPrinter(filePath);
+    // // STEP 2 — print locally
+    // const printResult = await sendToLocalPrinter(filePath);
+        const pdfUrl = res.data.pdfUrl; // backend must return public URL of the file
+
+              if (!pdfUrl) {
+                alert("File URL not available.");
+                return;
+              }
+
+              // Step 2: Send URL to kiosk-agent
+              const printResult = await sendToLocalPrinter(pdfUrl);
 
     if (printResult.error) {
       alert("Printer error — check printer connection");
