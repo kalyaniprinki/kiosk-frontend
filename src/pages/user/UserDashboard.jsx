@@ -139,10 +139,10 @@ const handlePrint = async (fileId) => {
               // Step 2: Send URL to kiosk-agent
               const printResult = await sendToLocalPrinter(pdfUrl);
 
-    if (printResult.error) {
-      alert("Printer error — check printer connection");
-      return;
-    }
+    // if (printResult.error) {
+    //   alert("Printer error — check printer connection");
+    //   return;
+    // }
 
     // STEP 3 — notify backend
     await api.post("/kiosk/print", { fileId });
