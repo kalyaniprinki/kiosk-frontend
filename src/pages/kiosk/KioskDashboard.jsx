@@ -137,7 +137,7 @@ async function handleStartPrint(fileId) {
     await loadKioskStatus();
   } catch (err) {
     console.error("Start print:", err);
-    alert("Failed to start print");
+    // alert("Failed to start print");
   }
 }
 
